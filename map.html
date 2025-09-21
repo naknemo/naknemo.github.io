@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Live Map</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: #eee;
+        }
+        .nav {
+            background: #1b1b1b;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #222;
+            position: sticky;
+            top: 0;
+        }
+        .brand-logo {
+            color: #0ff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .nav a {
+            margin-left: 18px;
+            text-decoration: none;
+            color: #bbb;
+            font-size: 18px;
+            padding: 8px 15px;
+            border: 1px solid #2a2a2a;
+            border-radius: 5px;
+        }
+        .nav a:hover {
+            color: #0ff;
+            border-color: #0ff;
+        }
+        h1 {
+            text-align: center;
+            margin: 40px 0 25px;
+            font-size: 2.2rem;
+            color: #0ff;
+        }
+        .map-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center; /* Center the offline message */
+        }
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 6px;
+        }
+        .offline-message {
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #c62828; /* A dark red color for offline status */
+            font-weight: bold;
+        }
+        @media (max-width: 768px) {
+            .map-container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav">
+        <span class="brand-logo">NAKNEMO.XYZ - Lilith</span>
+        <div>
+            <a href="index.html">Home</a>
+            <a href="info.html">Info</a>
+        </div>
+    </div>
+
+    <h1>Live Map</h1>
+
+    <div class="map-container" id="map-container">
+        </div>
+
+    <script>
+        const bluemapUrl = "http://gorillaz-vuitton.with.playit.plus:28027";
+        const container = document.getElementById('map-container');
+
+        async function checkStatusAndLoadMap() {
+            try {
+                // We'll use a fetch request with a short timeout to check if the server is up.
+                // It will only load the map if the fetch request is successful.
+                const response = await fetch(bluemapUrl, { mode: 'no-cors' });
+                
+                // If fetch is successful, assume the server is online and load the map.
+                const iframe = document.createElement('iframe');
+                iframe.src = bluemapUrl;
+                iframe.setAttribute('allowfullscreen', '');
+
+                container.innerHTML = ''; // Clear any previous content
+                container.appendChild(iframe);
+            } catch (error) {
+                // If fetch fails for any reason (offline, network error), display the "Offline" message.
+                const offlineMessage = document.createElement('div');
+                offlineMessage.className = 'offline-message';
+                offlineMessage.textContent = 'Offline';
+                
+                container.innerHTML = ''; // Clear any previous content
+                container.appendChild(offlineMessage);
+            }
+        }
+
+        // Run the function when the page loads
+        checkStatusAndLoadMap();
+
+        // Optional: Check status periodically to see if the server comes back online
+        setInterval(checkStatusAndLoadMap, 30000); // Check every 30 seconds
+    </script>
+</body>
+</html>

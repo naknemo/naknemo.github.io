@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Placeholder Site</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        #main-content {
+            display: none; /* Initially hide the content */
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            width: 90%;
+            text-align: center;
+        }
+        h1 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .data-slot {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: left;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+        .data-slot h2 {
+            margin-top: 0;
+            color: #0056b3;
+            font-size: 1.25rem;
+        }
+        textarea {
+            width: 100%;
+            height: 80px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #gemini-output {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            text-align: left;
+        }
+        #gemini-output ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body onload="checkPassword()">
+
+    <div id="main-content">
+        <h1>Welcome to Your Site!</h1>
+        <p>This is a simple dashboard page. You can fill in the sections below with your specific data and information.</p>
+        <div class="dashboard-grid">
+            <div class="data-slot">
+                <h2>Website Data</h2>
+                <p>Add key website statistics, traffic numbers, or user data here. This is a great place for a quick overview of your site's performance.</p>
+            </div>
+            <div class="data-slot">
+                <h2>Server Maintenance</h2>
+                <p>This slot can be used to display server status, uptime information, or upcoming maintenance schedules. It's a handy place to keep track of backend operations.</p>
+            </div>
+            <div class="data-slot">
+                <h2>AI Assistant</h2>
+                <textarea id="gemini-input" placeholder="Enter a topic or idea..."></textarea>
+                <button onclick="generateGeminiContent()">Generate Ideas</button>
+                <div id="gemini-output">Ideas will appear here.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function checkPassword() {
+            const correctPassword = "Gander8-Jester0";
+
+            const userPassword = prompt("Please enter the password:");
+
+            if (userPassword === correctPassword) {
+                // If password is correct, show the main content
+                document.getElementById('main-content').style.display = 'block';
+                alert("Correct! Access Granted.");
+            } else {
+                alert("Incorrect password. Access denied.");
+                // Optionally, you could redirect them or keep them on a blank page
+                document.body.innerHTML = '<h1>Access Denied</h1>';
+            }
+        }
+
+        // Function to handle the Gemini API call
+        async function generateGeminiContent() {
+            const inputElement = document.getElementById('gemini-input');
+            const outputElement = document.getElementById('gemini-output');
+            const userPrompt = inputElement.value;
+
+            if (userPrompt.trim() === "") {
+                outputElement.innerHTML = "Please enter some text to generate ideas.";
+                return;
+            }
+
+            outputElement.innerHTML = "Loading... ✨";
+
+            try {
+                // Create the prompt for the LLM
+                const prompt = `Generate three short, bullet-point ideas for the following topic: ${userPrompt}`;
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+
+                // Define the JSON schema for a structured response
+                const payload = {
+                    contents: chatHistory,
+                    generationConfig: {
+                        responseMimeType: "application/json",
+                        responseSchema: {
+                            type: "ARRAY",
+                            items: { "type": "STRING" }
+                        }
+                    }
+                };
+
+                const apiKey = "";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+                
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const json = result.candidates[0].content.parts[0].text;
+                    const parsedJson = JSON.parse(json);
+
+                    // Create a list from the parsed JSON and display it
+                    let listHtml = "<ul>";
+                    parsedJson.forEach(item => {
+                        listHtml += `<li>${item}</li>`;
+                    });
+                    listHtml += "</ul>";
+                    outputElement.innerHTML = listHtml;
+                } else {
+                    outputElement.innerHTML = "Sorry, I couldn't generate ideas at this time.";
+                }
+            } catch (error) {
+                console.error("Error generating content:", error);
+                outputElement.innerHTML = "An error occurred. Please try again later.";
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Protected Page Access</title>
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 100;
+    }
+    .modal-content {
+      background: #1f1f1f;
+      margin: 15% auto;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 400px;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-gray-100 flex items-center justify-center h-screen relative">
+
+  <!-- quick nav top right -->
+  <div class="absolute top-4 right-4 flex gap-3">
+    <a href="index.html" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-sm font-semibold">Home</a>
+    <a href="info.html" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-sm font-semibold">info</a>  
+  </div>
+
+  <div id="main-container" class="w-full h-full flex flex-col items-center justify-center">
+
+    <!-- access form -->
+    <div id="access-form" class="bg-gray-800 p-6 rounded-xl shadow-lg max-w-sm w-full">
+      <h2 class="text-2xl font-bold mb-5 text-center">Enter Code</h2>
+      <input type="password" id="accessCode" placeholder="type code..." 
+        class="w-full px-3 py-2 mb-4 border border-gray-700 bg-gray-900 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+      <button onclick="checkCode()" class="w-full bg-blue-600 hover:bg-blue-700 py-2 rounded-lg font-semibold">
+        Submit
+      </button>
+    </div>
+
+    <!-- iframe will show secret stuff -->
+    <iframe id="secret-content" src="" frameborder="0" class="w-full h-full rounded-xl shadow-lg" style="display:none;"></iframe>
+
+  </div>
+
+  <!-- message popup -->
+  <div id="messageModal" class="modal">
+    <div class="modal-content text-center text-white">
+      <p id="modalMessage" class="text-lg font-medium"></p>
+      <button onclick="closeModal()" class="mt-4 px-5 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg">OK</button>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('access-form');
+    const frame = document.getElementById('secret-content');
+    const modal = document.getElementById('messageModal');
+    const modalMsg = document.getElementById('modalMessage');
+
+    const secrets = [
+      'Overrule4-Revenue7',   // password
+      'Bacteria5.html'        // file to show
+    ];
+
+    function closeModal() { modal.style.display = 'none'; }
+    function showModal(msg) {
+      modalMsg.textContent = msg;
+      modal.style.display = 'block';
+    }
+
+    function checkCode() {
+      const code = document.getElementById('accessCode').value;
+      if (code === secrets[0]) {
+        form.style.display = 'none';
+        frame.style.display = 'block';
+        frame.src = secrets[1];
+        showModal('Access granted!');
+        console.log('✅ correct code entered');
+      } else {
+        showModal('Wrong code.');
+        console.log('❌ bad code:', code);
+      }
+    }
+  </script>
+</body>
+</html>
