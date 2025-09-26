@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Info</title>
+    <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
+    <style>
+        body {
+            /* New background and font */
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: #eee;
+        }
+
+        /* New navigation bar from Projects page */
+        .nav {
+            background: #1b1b1b;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #222;
+            position: sticky;
+            top: 0;
+        }
+
+        /* Style for the new brand logo */
+        .brand-logo {
+            color: #0ff; /* Bright color for visibility */
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none; /* In case you want to make it a link later */
+        }
+
+        .nav a {
+            margin-left: 18px;
+            text-decoration: none;
+            color: #bbb;
+            font-size: 18px;
+            padding: 8px 15px;
+            border: 1px solid #2a2a2a;
+            border-radius: 5px;
+        }
+        .nav a:hover {
+            color: #0ff;
+            border-color: #0ff;
+        }
+
+        h1 {
+            /* New heading style from Projects page */
+            text-align: center;
+            margin: 40px 0 25px;
+            font-size: 2.2rem;
+            color: #0ff;
+        }
+
+        .info-section {
+            margin-top: 40px;
+            text-align: center;
+        }
+        .info-section a {
+            display: inline-block;
+            margin: 6px 10px;
+            color: #0ff; /* Updated link color */
+            font-size: 17px;
+            text-decoration: none;
+        }
+        .info-section a:hover {
+            color: #ff00ff;
+        }
+        .info-section h2 {
+            color: #0ff;
+            font-size: 1.6rem;
+            margin-top: 30px;
+        }
+
+        .info-section p {
+            color: #bbb;
+        }
+
+        /* Cards layout from original file, adjusted for new color scheme */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card {
+            width: 340px;
+            border-radius: 10px; /* Adjusted to match other cards */
+            border: 1px solid #2a2a2a;
+            overflow: hidden;
+            transition: transform .25s ease, border-color .25s ease;
+        }
+        .card:hover {
+            transform: scale(1.02); /* Same hover effect as Projects page */
+            border-color: #0ff;
+        }
+
+        .discord-card { background: #1a1a1a; position: relative; } /* New background color */
+        .discord-banner { height: 120px; background: #ff00ff; }
+        .rc-bruden .discord-banner { background: #d7889b; }
+
+        .discord-content {
+            padding: 20px;
+            margin-top: -4px;
+            position: relative;
+        }
+
+        .discord-pfp {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 4px solid #111; /* Updated border color to match new body bg */
+            position: absolute;
+            top: -45px;
+            left: 20px;
+        }
+
+        .discord-status {
+            margin-left: 120px;
+            background: #2a2a2a; /* Updated background color */
+            border-radius: 8px;
+            font-size: 13px;
+            padding: 6px 10px;
+            color: #ccc;
+            display: inline-block;
+        }
+
+        .discord-username {
+            margin: 65px 0 0 120px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .discord-pronouns {
+            margin-left: 120px;
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        .steam-card {
+            /* New background style */
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .steam-pfp {
+            width: 90px;
+            height: 90px;
+            border-radius: 6px;
+            margin-right: 20px;
+        }
+        .steam-info h3 { margin: 0; font-size: 20px; }
+        .steam-info p { margin: 4px 0; font-size: 14px; }
+
+        /* Buttons from Projects page */
+        .button-container {
+            position: fixed; /* Changed to fixed so it's always visible */
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+        }
+        .common-button {
+            background: #1a1a1a;
+            color: #bbb;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-size: 15px;
+            text-decoration: none;
+            border: 1px solid #2a2a2a;
+            transition: background .2s ease, color .2s ease, border-color .2s ease;
+        }
+        .common-button:hover {
+            background: #2a2a2a;
+            color: #0ff;
+            border-color: #0ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+    <span class="brand-logo">NAKNEMO.XYZ - Lilith</span>
+    <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="index.html">Home</a>
+    </div>
+</div>
+
+    <h1>NAKNEMO!</h1>
+
+    <div class="card-container">
+        <div class="card discord-card naknemo">
+            <div class="discord-banner" style="background: #0ff;"></div>
+            <div class="discord-content">
+                <img class="discord-pfp" src="7c47c12e0f94887b.png" alt="Discord Profile">
+                <div class="discord-status">Smoke crack die young! :3</div>
+                <div class="discord-username">:></div>
+                <div class="discord-pronouns">naknemo__ • Alco/holic</div>
+            </div>
+        </div>
+
+        <div class="card discord-card rc-bruden">
+            <div class="discord-banner" style="background: #d7889b;"></div>
+            <div class="discord-content">
+                <img class="discord-pfp" src="c2511074ceacbb04f8fc32236d5e1dcf.jpg" alt="Rc Bruden Profile">
+                <div class="discord-status">GriL?</div>
+                <div class="discord-username">Rc Bruden</div>
+                <div class="discord-pronouns">molly_lilithxd • She/her/kylskåpsmagnet</div>
+            </div>
+        </div>
+
+        <div class="card steam-card">
+            <img class="steam-pfp" src="cb75d9d1aebd31be5ad76b2971f1f28290373ba1_full.jpg" alt="Steam Profile 1">
+            <div class="steam-info">
+                <h3>SUEDI</h3>
+                <p>Level 81 • 8 Years of Service</p>
+                <p>gänqsmållaren • Sweden</p>
+            </div>
+        </div>
+
+        <div class="card steam-card">
+            <img class="steam-pfp" src="f5db8311d14a694b076f6d2d99e860174edef49d_full.jpg" alt="Steam Profile 2">
+            <div class="steam-info">
+                <h3>NAKNEMO</h3>
+                <p>Level 35 • 12 Years of Service</p>
+                <p>biramy qunbulat yadawia • Sweden</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <h2>Links</h2>
+        <a href="#">📧 naknemo.suedi@gmail.com</a>
+        <a href="https://steamcommunity.com/id/SUEDI_/" target="_blank">🎮 SUEDI</a>
+        <a href="https://steamcommunity.com/id/NAKNEMO_" target="_blank">🎮 NAKNEMO</a>
+        <a href="https://discord.com/invite/JN5UD7mEyU" target="_blank">💬 Discord: naknemo__</a>
+        <a href="https://discord.com/invite/JN5UD7mEyU" target="_blank">💬 Discord: Rc Bruden</a>
+        <a href="https://www.youtube.com/@RameNudlar" target="_blank">📺 YouTube</a>
+        <a href="https://www.twitch.tv/naknemo__" target="_blank">🎮 Twitch</a>
+        <a href="https://x.com/naknemo_" target="_blank">🐦 Twitter</a>
+
+        <h2>Server Information</h2>
+        <p><strong>Minecraft:</strong> Lilith.playit.gg</p>
+        <p><strong>TeamSpeak:</strong> ts.lilith.playit.gg</p>
+        <p><strong>FiveM:</strong> fivem.lilith.playit.gg:25608</p>
+    </div>
+
+</body>
+</html>
