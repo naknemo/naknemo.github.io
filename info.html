@@ -184,28 +184,24 @@
         .steam-info p { margin: 4px 0; font-size: 14px; }
         
         
-        /* === DEDICATED MUSIC & STATS CARD STYLES - SPLIT === */
+        /* === DEDICATED MUSIC & STATS CARD STYLES === */
         .music-stats-card-container {
             display: flex;
             justify-content: center;
             padding: 0 20px; 
-            margin: 30px auto 50px auto; 
+            margin: 30px auto 20px auto; /* Reduced bottom margin to 20px */
             max-width: 1100px; 
         }
 
         .music-stats-card {
-            max-width: 700px; 
+            /* Now acting as a single panel for Stats.fm */
+            max-width: 400px; 
             width: 100%;
             background: #1a1a1a; 
             padding: 20px; 
             border-radius: 10px;
             border: 1px solid #2a2a2a;
             transition: transform .25s ease, border-color .25s ease;
-            
-            /* CSS Grid for Split Layout */
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
         }
 
         .music-stats-card:hover {
@@ -213,6 +209,25 @@
             border-color: #9d4edd; 
             box-shadow: 0 0 15px rgba(157, 77, 221, 0.4); 
         }
+
+        /* New Panel for Spotify Playlists */
+        .single-music-panel {
+            max-width: 700px; 
+            width: 100%;
+            margin: 20px auto 50px auto; /* 20px top margin to separate from Stats card */
+            background: #1a1a1a; 
+            padding: 20px; 
+            border-radius: 10px;
+            border: 1px solid #2a2a2a;
+            transition: transform .25s ease, border-color .25s ease;
+        }
+
+        .single-music-panel:hover {
+            transform: scale(1.01);
+            border-color: #1DB954;
+            box-shadow: 0 0 15px rgba(29, 185, 84, 0.4); 
+        }
+
 
         .music-column {
             display: flex;
@@ -229,6 +244,16 @@
             margin: 0 0 5px 0;
         }
 
+        .stats-fm-title {
+             color: #9d4edd;
+        }
+
+        /* Styling for the playist area within the single panel */
+        .single-music-panel .spotify-embed-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
         .spotify-embed-wrapper iframe {
             display: block;
             width: 100%;
@@ -361,11 +386,14 @@
                 left: 15px;
             }
             .music-stats-card {
-                grid-template-columns: 1fr; /* Stack columns on mobile */
+                grid-template-columns: 1fr; 
                 max-width: 100%;
             }
+            .single-music-panel .spotify-embed-wrapper {
+                 grid-template-columns: 1fr; /* Stack playlists on mobile */
+            }
             .stats-fm-iframe {
-                height: 300px; /* Reduced height on mobile */
+                height: 300px; 
             }
         }
 
@@ -446,7 +474,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="info-section">
         
         <h2>Links</h2>
@@ -524,49 +552,34 @@
                 </dl>
             </div>
         </div>
-
+        
         <h2>My Music & Stats</h2>
         <div class="music-stats-card-container">
-            <div class="music-stats-card">
-                
-                <div class="music-column">
-                    <h4 class="spotify-section-title">My Playlists</h4>
-                    <div class="spotify-embed-wrapper">
-                        <iframe style="border-radius:12px" 
-                                src="https://open.spotify.com/embed/playlist/0aJ9Vi5eRQXxZpFQq8Ep3G?utm_source=generator&theme=0" 
-                                width="100%" 
-                                height="185" 
-                                frameBorder="0" 
-                                allowfullscreen="" 
-                                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                                loading="lazy">
-                        </iframe>
-                        
-                        <iframe style="border-radius:12px" 
-                                src="https://open.spotify.com/embed/playlist/43Rm6ydQxWLw7jV9tYXZdZ?utm_source=generator&theme=0" 
-                                width="100%" 
-                                height="185" 
-                                frameBorder="0" 
-                                allowfullscreen="" 
-                                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                                loading="lazy">
-                        </iframe>
-                    </div>
-                </div>
 
-                <div class="music-column">
-                    <h4 class="spotify-section-title" style="color: #9d4edd;">Stats.fm Now Playing</h4>
-                    <iframe
-                        class="stats-fm-iframe"
-                        src="https://stats.fm/embed/now-playing/naknemo"
-                        width="100%"
-                        height="400"
-                        loading="lazy"
-                        frameborder="0">
-                    </iframe>
-                </div>
-                
-            </div>
+        </div>
+        <div class="single-music-panel">
+             <h4 class="spotify-section-title">My Playlists</h4>
+             <div class="spotify-embed-wrapper">
+                 <iframe style="border-radius:12px" 
+                         src="https://open.spotify.com/embed/playlist/0aJ9Vi5eRQXxZpFQq8Ep3G?utm_source=generator&theme=0" 
+                         width="100%" 
+                         height="185" 
+                         frameBorder="0" 
+                         allowfullscreen="" 
+                         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                         loading="lazy">
+                 </iframe>
+                 
+                 <iframe style="border-radius:12px" 
+                         src="https://open.spotify.com/embed/playlist/43Rm6ydQxWLw7jV9tYXZdZ?utm_source=generator&theme=0" 
+                         width="100%" 
+                         height="185" 
+                         frameBorder="0" 
+                         allowfullscreen="" 
+                         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                         loading="lazy">
+                 </iframe>
+             </div>
         </div>
         </div>
 
