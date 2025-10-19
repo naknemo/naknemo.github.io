@@ -4,17 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Info</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
+    
     <style>
+        /* Global and Base Styles */
         body {
-            /* New background and font */
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: #111;
+            font-family: 'Inter', sans-serif;
+            background: #111; /* Explicit Dark Background */
             color: #eee;
+            line-height: 1.6;
+            min-height: 100vh;
         }
 
-        /* New navigation bar from Projects page */
+        /* Navigation Bar */
         .nav {
             background: #1b1b1b;
             padding: 12px 20px;
@@ -24,14 +28,14 @@
             border-bottom: 1px solid #222;
             position: sticky;
             top: 0;
+            z-index: 1000;
         }
 
-        /* Style for the new brand logo */
         .brand-logo {
-            color: #0ff; /* Bright color for visibility */
+            color: #0ff;
             font-size: 1.2rem;
             font-weight: bold;
-            text-decoration: none; /* In case you want to make it a link later */
+            text-decoration: none;
         }
 
         .nav a {
@@ -42,65 +46,82 @@
             padding: 8px 15px;
             border: 1px solid #2a2a2a;
             border-radius: 5px;
+            transition: all 0.2s;
         }
         .nav a:hover {
             color: #0ff;
             border-color: #0ff;
         }
 
+        /* Main Heading */
         h1 {
-            /* New heading style from Projects page */
             text-align: center;
-            margin: 40px 0 25px;
+            margin: 25px 0 25px; 
             font-size: 2.2rem;
             color: #0ff;
         }
 
+        /* Info Section (Links & Servers) */
         .info-section {
             margin-top: 40px;
             text-align: center;
+            padding-bottom: 80px;
         }
+
+        .info-section h2 {
+            color: #0ff;
+            font-size: 1.6rem;
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
+
+        .info-section h3 {
+            color: #ff00ff;
+            font-size: 1.4rem;
+            margin-top: 40px;
+            text-align: center;
+        }
+
         .info-section a {
             display: inline-block;
             margin: 6px 10px;
-            color: #0ff; /* Updated link color */
+            color: #0ff;
             font-size: 17px;
             text-decoration: none;
+            transition: color 0.2s;
         }
         .info-section a:hover {
             color: #ff00ff;
         }
-        .info-section h2 {
-            color: #0ff;
-            font-size: 1.6rem;
-            margin-top: 30px;
-        }
-
         .info-section p {
             color: #bbb;
+            margin: 4px 0;
         }
 
-        /* Cards layout from original file, adjusted for new color scheme */
+        /* Social Cards Layout */
         .card-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
+            padding: 0 10px;
+            margin-top: 30px; 
         }
 
         .card {
             width: 340px;
-            border-radius: 10px; /* Adjusted to match other cards */
+            border-radius: 10px;
             border: 1px solid #2a2a2a;
             overflow: hidden;
             transition: transform .25s ease, border-color .25s ease;
         }
         .card:hover {
-            transform: scale(1.02); /* Same hover effect as Projects page */
-            border-color: #0ff;
+            transform: scale(1.02);
+            border-color: #0ff; /* Standard neon blue hover */
         }
-
-        .discord-card { background: #1a1a1a; position: relative; } /* New background color */
+        
+        /* Discord & Steam Card Styles */
+        .discord-card { background: #1a1a1a; position: relative; }
         .discord-banner { height: 120px; background: #ff00ff; }
         .rc-bruden .discord-banner { background: #d7889b; }
 
@@ -114,36 +135,39 @@
             width: 90px;
             height: 90px;
             border-radius: 50%;
-            border: 4px solid #111; /* Updated border color to match new body bg */
+            border: 4px solid #111;
             position: absolute;
             top: -45px;
             left: 20px;
+            background-color: #333; 
         }
 
-        .discord-status {
+        .discord-status, .discord-username, .discord-pronouns {
             margin-left: 120px;
-            background: #2a2a2a; /* Updated background color */
+        }
+        .discord-status {
+            background: #2a2a2a;
             border-radius: 8px;
             font-size: 13px;
             padding: 6px 10px;
             color: #ccc;
             display: inline-block;
+            margin-left: 120px;
         }
 
         .discord-username {
-            margin: 65px 0 0 120px;
+            margin-top: 65px;
+            margin-bottom: 0;
             font-weight: bold;
             font-size: 18px;
         }
 
         .discord-pronouns {
-            margin-left: 120px;
             font-size: 12px;
             color: #aaa;
         }
 
         .steam-card {
-            /* New background style */
             display: flex;
             align-items: center;
             padding: 15px;
@@ -158,21 +182,207 @@
         }
         .steam-info h3 { margin: 0; font-size: 20px; }
         .steam-info p { margin: 4px 0; font-size: 14px; }
+        
+        
+        /* === DEDICATED MUSIC & STATS CARD STYLES - SPLIT === */
+        .music-stats-card-container {
+            display: flex;
+            justify-content: center;
+            padding: 0 20px; 
+            margin: 30px auto 50px auto; 
+            max-width: 1100px; 
+        }
 
-        /* Buttons from Projects page */
+        .music-stats-card {
+            max-width: 700px; 
+            width: 100%;
+            background: #1a1a1a; 
+            padding: 20px; 
+            border-radius: 10px;
+            border: 1px solid #2a2a2a;
+            transition: transform .25s ease, border-color .25s ease;
+            
+            /* CSS Grid for Split Layout */
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .music-stats-card:hover {
+            transform: scale(1.01); 
+            border-color: #9d4edd; 
+            box-shadow: 0 0 15px rgba(157, 77, 221, 0.4); 
+        }
+
+        .music-column {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .spotify-section-title {
+            font-size: 1.1rem; 
+            text-align: center;
+            color: #1DB954; 
+            border-bottom: 1px solid #2a2a2a;
+            padding-bottom: 8px;
+            margin: 0 0 5px 0;
+        }
+
+        .spotify-embed-wrapper iframe {
+            display: block;
+            width: 100%;
+            height: 185px; 
+        }
+        
+        /* Stats.fm Embed Styling */
+        .stats-fm-iframe {
+            border-radius: 8px;
+            height: 400px; 
+        }
+        /* ========================================= */
+
+
+        /* Hardware & Peripherals Section Styles */
+        .hardware-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 30px auto 50px auto;
+            padding: 0 20px;
+            text-align: left;
+        }
+
+        .hardware-card, .peripheral-card {
+            background: #1a1a1a;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #2a2a2a;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all .3s ease;
+        }
+
+        .hardware-card:hover {
+            border-color: #0ff;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+            transform: translateY(-3px);
+        }
+        
+        .peripheral-card:hover {
+            border-color: #ff00ff;
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .hardware-card h3 {
+            margin-top: 0;
+            font-size: 1.25rem;
+            color: #ff00ff;
+            border-bottom: 2px solid #2a2a2a;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .hardware-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .hardware-card ul li {
+            margin-bottom: 10px;
+            line-height: 1.4;
+            color: #ccc;
+        }
+        
+        .hardware-card ul li strong {
+            color: #eee;
+            font-weight: 600;
+            display: inline-block;
+            min-width: 90px;
+            margin-right: 5px;
+        }
+
+        /* Peripheral Cards (using DL for key/value pairs) */
+        .peripheral-card {
+            padding: 20px;
+        }
+
+        .peripheral-card h4 {
+            margin-top: 0;
+            color: #0ff;
+            font-size: 1.15rem;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #2a2a2a;
+            margin-bottom: 15px;
+        }
+
+        .peripheral-card dl {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 8px 15px;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .peripheral-card dt {
+            font-weight: bold;
+            color: #eee;
+            text-align: right;
+        }
+
+        .peripheral-card dd {
+            margin-left: 0;
+            color: #bbb;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hardware-container {
+                grid-template-columns: 1fr;
+                margin: 20px auto;
+                padding: 0 15px;
+            }
+            .card {
+                width: 100%;
+            }
+            .peripheral-card dl {
+                grid-template-columns: 1fr 1.5fr;
+            }
+            .discord-status, .discord-username, .discord-pronouns {
+                margin-left: 100px;
+            }
+            .discord-pfp {
+                width: 80px;
+                height: 80px;
+                top: -40px;
+                left: 15px;
+            }
+            .music-stats-card {
+                grid-template-columns: 1fr; /* Stack columns on mobile */
+                max-width: 100%;
+            }
+            .stats-fm-iframe {
+                height: 300px; /* Reduced height on mobile */
+            }
+        }
+
+        /* Fixed Buttons */
         .button-container {
-            position: fixed; /* Changed to fixed so it's always visible */
+            position: fixed;
             bottom: 20px;
             right: 20px;
             display: flex;
             gap: 8px;
+            z-index: 1000;
         }
         .common-button {
             background: #1a1a1a;
             color: #bbb;
             padding: 8px 16px;
             border-radius: 5px;
-            font-size: 15px;
             text-decoration: none;
             border: 1px solid #2a2a2a;
             transition: background .2s ease, color .2s ease, border-color .2s ease;
@@ -184,22 +394,23 @@
         }
     </style>
 </head>
-<body>
+<body style="background: #111;">
     <div class="nav">
     <span class="brand-logo">NAKNEMO.XYZ - Lilith</span>
     <div class="nav-links">
         <a href="map.html">map</a>
-        <a href="index.html">Home</a>
+        <a href="info.html">Home</a> 
     </div>
 </div>
 
     <h1>NAKNEMO!</h1>
 
     <div class="card-container">
+        
         <div class="card discord-card naknemo">
             <div class="discord-banner" style="background: #0ff;"></div>
             <div class="discord-content">
-                <img class="discord-pfp" src="7c47c12e0f94887b.png" alt="Discord Profile">
+                <img class="discord-pfp" src="7c47c12e0f94887b.png" alt="Discord Profile 1">
                 <div class="discord-status">Smoke crack die young! :3</div>
                 <div class="discord-username">:></div>
                 <div class="discord-pronouns">naknemo__ • Alco/holic</div>
@@ -209,12 +420,13 @@
         <div class="card discord-card rc-bruden">
             <div class="discord-banner" style="background: #d7889b;"></div>
             <div class="discord-content">
-                <img class="discord-pfp" src="c2511074ceacbb04f8fc32236d5e1dcf.jpg" alt="Rc Bruden Profile">
+                <img class="discord-pfp" src="c2511074ceacbb04f8fc32236d5e1dcf.jpg" alt="Rc Bruden Profile" style="object-fit: cover;">
                 <div class="discord-status">GriL?</div>
                 <div class="discord-username">Rc Bruden</div>
                 <div class="discord-pronouns">molly_lilithxd • She/her/kylskåpsmagnet</div>
             </div>
         </div>
+        
 
         <div class="card steam-card">
             <img class="steam-pfp" src="cb75d9d1aebd31be5ad76b2971f1f28290373ba1_full.jpg" alt="Steam Profile 1">
@@ -234,8 +446,9 @@
             </div>
         </div>
     </div>
-
+    
     <div class="info-section">
+        
         <h2>Links</h2>
         <a href="#">📧 naknemo.suedi@gmail.com</a>
         <a href="https://steamcommunity.com/id/SUEDI_/" target="_blank">🎮 SUEDI</a>
@@ -252,6 +465,113 @@
         <p><strong>TeamSpeak:</strong> ts.lilith.playit.gg</p>
         <p><strong>FiveM:</strong> fivem.lilith.playit.gg:25608</p>
         
+        <h2>My Setup & Hardware</h2>
+        <div class="hardware-container">
+            <div class="hardware-card pc-card">
+                <h3>🖥️ Personal PC (The Lilith)</h3>
+                <ul>
+                    <li><strong>CPU:</strong> Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz</li>
+                    <li><strong>GPU:</strong> NVIDIA GeForce RTX 3050</li>
+                    <li><strong>RAM:</strong> 16GB (2x8GB)</li>
+                    <li><strong>Storage:</strong> 500gb NVMe M.2 SSD + 4TB HDD</li>
+                    <li><strong>OS:</strong> Windows 11 Pro</li>
+                </ul>
+            </div>
+
+            <div class="hardware-card server-card">
+                <h3>⚙️ Server I (Lilith-A)</h3>
+                <ul>
+                    <li><strong>CPU:</strong> Intel(R) Core(TM) i3-7100 CPU @ 3.90GHz</li>
+                    <li><strong>RAM:</strong> 24GB DDR4 </li>
+                    <li><strong>Storage:</strong> 6TB</li>
+                    <li><strong>Use:</strong> Game Hosting & Backend Services</li>
+                </ul>
+            </div>
+
+            <div class="hardware-card server-card">
+                <h3>⚙️ Server II (Lilith-B)</h3>
+                <ul>
+                    <li><strong>CPU:</strong> BLANK</li>
+                    <li><strong>RAM:</strong> BLANK</li>
+                    <li><strong>Storage:</strong> BLANK</li>
+                    <li><strong>Use:</strong> Media/Plex & Backup Lab</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>🎧 Setup</h3>
+        <div class="hardware-container peripherals-container">
+            <div class="peripheral-card">
+                <h4>Keyboard & Mouse</h4>
+                <dl>
+                    <dt>Keyboard</dt><dd>Logitech G915 Wireless</dd>
+                    <dt>Mouse</dt><dd>Logitech G305 Wireless</dd>
+                </dl>
+            </div>
+            <div class="peripheral-card">
+                <h4>Audio Setup</h4>
+                <dl>
+                    <dt>Microphone</dt><dd>Fifine</dd>
+                    <dt>Headset</dt><dd>Artics Pro Wireless</dd>
+                </dl>
+            </div>
+            <div class="peripheral-card">
+                <h4>Display & Chair</h4>
+                <dl>
+                    <dt>Main Monitor</dt><dd>T24m-10 (1080p @ 60Hz)</dd>
+                    <dt>Second Monitor</dt><dd>Arzopa (1080p @ 60Hz)</dd>
+                    <dt>Third Monitor</dd><dd>S24C350 (1080p @ 60Hz)</dd>
+                </dl>
+            </div>
+        </div>
+
+        <h2>My Music & Stats</h2>
+        <div class="music-stats-card-container">
+            <div class="music-stats-card">
+                
+                <div class="music-column">
+                    <h4 class="spotify-section-title">My Playlists</h4>
+                    <div class="spotify-embed-wrapper">
+                        <iframe style="border-radius:12px" 
+                                src="https://open.spotify.com/embed/playlist/0aJ9Vi5eRQXxZpFQq8Ep3G?utm_source=generator&theme=0" 
+                                width="100%" 
+                                height="185" 
+                                frameBorder="0" 
+                                allowfullscreen="" 
+                                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                                loading="lazy">
+                        </iframe>
+                        
+                        <iframe style="border-radius:12px" 
+                                src="https://open.spotify.com/embed/playlist/43Rm6ydQxWLw7jV9tYXZdZ?utm_source=generator&theme=0" 
+                                width="100%" 
+                                height="185" 
+                                frameBorder="0" 
+                                allowfullscreen="" 
+                                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                                loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+
+                <div class="music-column">
+                    <h4 class="spotify-section-title" style="color: #9d4edd;">Stats.fm Now Playing</h4>
+                    <iframe
+                        class="stats-fm-iframe"
+                        src="https://stats.fm/embed/now-playing/naknemo"
+                        width="100%"
+                        height="400"
+                        loading="lazy"
+                        frameborder="0">
+                    </iframe>
+                </div>
+                
+            </div>
+        </div>
+        </div>
+
+    <div class="button-container">
+        <a href="#" class="common-button">Scroll Up</a>
     </div>
 
 </body>
