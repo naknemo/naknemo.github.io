@@ -15,24 +15,22 @@
             background: #1b1b1b;
             padding: 12px 20px;
             display: flex;
-            /* Changed to space-between to push logo left and button right */
-            justify-content: space-between; 
-            align-items: center; /* Vertically align items */
+            justify-content: space-between;
+            align-items: center;
             border-bottom: 1px solid #222;
             position: sticky;
             top: 0;
         }
 
-        /* Style for the new brand logo */
         .brand-logo {
-            color: #0ff; /* Bright color for visibility */
+            color: #0ff;
             font-size: 1.2rem;
             font-weight: bold;
-            text-decoration: none; /* In case you want to make it a link later */
+            text-decoration: none;
         }
 
         .nav a {
-            margin-left: 18px; /* This will now only apply to the 'info' button */
+            margin-left: 18px;
             text-decoration: none;
             color: #bbb;
             font-size: 18px;
@@ -40,6 +38,7 @@
             border: 1px solid #2a2a2a;
             border-radius: 5px;
         }
+
         .nav a:hover {
             color: #0ff;
             border-color: #0ff;
@@ -69,6 +68,7 @@
             cursor: pointer;
             transition: transform .2s, border-color .2s;
         }
+
         .card:hover {
             transform: scale(1.02);
             border-color: #0ff;
@@ -105,8 +105,9 @@
             border-top: 1px solid #2a2a2a;
             padding-top: 0;
         }
+
         .card.active .details {
-            max-height: 300px;
+            max-height: 500px;
             opacity: 1;
             padding-top: 10px;
         }
@@ -137,77 +138,67 @@
             color: #777;
         }
 
-        /* Status box styling */
-        .status-box {
-            max-width: 1100px;
-            margin: 40px auto;
-            padding: 20px;
-            background: #1a1a1a;
-            border: 1px solid #2a2a2a;
-            border-radius: 10px;
+        /* Redesigned live status badges */
+        .live-status {
+            margin-top: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
         }
 
-        .status-box h2 {
-            margin-top: 0;
-            font-size: 1.2rem;
-            color: #0ff;
-            text-align: center;
-        }
-
-        .status-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-top: 15px;
-        }
-        @media (max-width: 600px) {
-            .status-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .status-item {
-            padding: 8px 12px;
+        .status-badge {
+            background: #222;
+            border: 1px solid #333;
             border-radius: 6px;
-            font-size: 0.9rem;
-            font-weight: bold;
+            padding: 4px 8px;
+            font-size: 0.8rem;
             display: flex;
             align-items: center;
-        }
-        
-        .status-item.online {
-            background: #2e7d32;
+            gap: 6px;
+            color: #ccc;
         }
 
-        .status-item.offline {
-            background: #c62828;
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
         }
 
-        .status-icon {
-            margin-right: 8px;
+        .status-badge.online .status-dot {
+            background-color: #00ff6a;
+            box-shadow: 0 0 4px #00ff6a;
+        }
+
+        .status-badge.offline .status-dot {
+            background-color: #ff4747;
+            box-shadow: 0 0 4px #ff4747;
         }
     </style>
 </head>
 <body>
     <div class="nav">
-    <span class="brand-logo">NAKNEMO.XYZ - Lilith</span>
-    <div class="nav-links">
-        <a href="map.html">Map</a>
-        <a href="info.html">Info</a>
+        <span class="brand-logo">NAKNEMO.XYZ - Lilith</span>
+        <div class="nav-links">
+            <a href="map.html">Map</a>
+            <a href="info.html">Info</a>
+        </div>
     </div>
-</div>
 
     <h1>My Projects</h1>
 
     <div class="projects">
+        <!-- Minecraft Network -->
         <div class="card" onclick="this.classList.toggle('active')">
             <h2>Minecraft Network <span class="status">Ongoing</span></h2>
             <p class="desc">Custom survival + minigames server with proxy system.</p>
             <div class="details">
-                <!-- Added Minecraft IP address information -->
                 <p class="stack"><b>IP Address:</b> Lilith.playit.gg</p>
                 <p class="stack"><b>Stack:</b> Java, Paper, Velocity, MySQL</p>
                 <p class="version">Last Update: Aug 2025 • v1.6</p>
+
+                <div class="live-status" data-project="minecraft-network"></div>
+
                 <ul class="history">
                     <li>✅ Aug 2025 – Added more backend servers</li>
                     <li>⚒️ Jun 2025 – Performance optimization</li>
@@ -217,14 +208,17 @@
             </div>
         </div>
 
+        <!-- FiveM GTA Server -->
         <div class="card" onclick="this.classList.toggle('active')">
             <h2>FiveM GTA Server <span class="status">Ongoing</span></h2>
             <p class="desc">A GTA Online–style server with businesses, heists and economy systems.</p>
             <div class="details">
-                <!-- Added FiveM IP address information -->
                 <p class="stack"><b>IP Address:</b> Fivem.lilith.playit.gg</p>
                 <p class="stack"><b>Stack:</b> Lua, MySQL, QBCore, FiveM</p>
                 <p class="version">Last Update: 2025 • v0.2 beta</p>
+
+                <div class="live-status" data-project="fivem"></div>
+
                 <ul class="history">
                     <li>❎ Sept 2025 – Nothing added yet</li>
                     <li>❎ Aug 2025 – Nothing added yet</li>
@@ -234,109 +228,114 @@
             </div>
         </div>
 
+        <!-- Website -->
         <div class="card" onclick="this.classList.toggle('active')">
             <h2>My Website <span class="status">Ongoing</span></h2>
-            <p class="desc">The hub for my servers, projects, and status dashboard.</p>
+            <p class="desc">The hub for my servers, projects, and dashboards.</p>
             <div class="details">
-                <!-- Added Website URL as a form of "IP" for the project -->
                 <p class="stack"><b>URL:</b> Naknemo.xyz</p>
                 <p class="stack"><b>Stack:</b> HTML, CSS, JS</p>
                 <p class="version">Last Update: Sept 2025 • v2.1</p>
+
                 <ul class="history">
                     <li>✅ Sept 2025 – Added Projects page</li>
                     <li>⚒️ Jan 2025 – Full remake</li>
-                    <li>🚀 Jul 2024 – Website launched</li>
+                    <li>🚀 Oct 2024 – Updated the design</li>
                 </ul>
                 <p class="note">Fun fact: Started as a simple status checker.</p>
             </div>
         </div>
 
+        <!-- Minecraft Modded Server -->
         <div class="card" onclick="this.classList.toggle('active')">
             <h2>Minecraft Modded Server <span class="status">Ongoing</span></h2>
-            <p class="desc">Modded server for me and my friends</p>
+            <p class="desc">Modded server for me and my friends.</p>
             <div class="details">
-                <!-- Added Website URL as a form of "IP" for the project -->
                 <p class="stack"><b>IP Address:</b> mod.lilith.playit.gg</p>
                 <p class="stack"><b>Stack:</b> Forge</p>
                 <p class="version">Last Update: October 2025 • v1</p>
+
+                <div class="live-status" data-project="minecraft-modded"></div>
+            </div>
+        </div>
+
+        <!-- NEW: TeamSpeak Server -->
+        <div class="card" onclick="this.classList.toggle('active')">
+            <h2>TeamSpeak Server <span class="status">Ongoing</span></h2>
+            <p class="desc">Voice communication server for community and team coordination.</p>
+            <div class="details">
+                <p class="stack"><b>IP Address:</b> ts.lilith.playit.gg</p>
+                <p class="stack"><b>Stack:</b> TeamSpeak 3</p>
+                <p class="version">Last Update: October 2025 • v1.0</p>
+
+                <div class="live-status" data-project="teamspeak"></div>
+
                 <ul class="history">
+                    <li>🚀 Oct 2025 – Server setup complete</li>
                 </ul>
-            </div>
-        </div>
-
-        <div class="card" onclick="this.classList.toggle('active')">
-            <h2>Future Project #1 <span class="status">Planned</span></h2>
-            <p class="desc">Placeholder for something new coming soon.</p>
-            <div class="details">
-                <p class="stack"><b>Stack:</b> TBD</p>
-                <p class="version">Planned: 2026</p>
-            </div>
-        </div>
-        
-        <div class="card" onclick="this.classList.toggle('active')">
-            <h2>Future Project #2 <span class="status">Planned</span></h2>
-            <p class="desc">Placeholder for something new coming soon.</p>
-            <div class="details">
-                <p class="stack"><b>Stack:</b> TBD</p>
-                <p class="version">Planned: 2026</p>
+                <p class="note">Fun fact: Used during events and SMP coordination.</p>
             </div>
         </div>
     </div>
 
-    <div class="status-box">
-        <h2>Live Status</h2>
-        <div class="status-grid" id="status-container">
-            </div>
-    </div>
-    
     <script>
-        const servers = [
-            { name: "Minecraft Proxy", ip: "lilith.playit.gg" },
-            { name: "Minecraft Modded server", ip: "mod.lilith.playit.gg" },
-            { name: "Minecraft Lobby", ip: "lobby.lilith.playit.gg" },
-            { name: "Minecraft Survival", ip: "survival.lilith.playit.gg" },
-            { name: "Minecraft SMP", ip: "smp.lilith.playit.gg" },
-            { name: "Minecraft Creative", ip: "creative.lilith.playit.gg" },
-            { name: "Minecraft Backup", ip: "parkour.lilith.playit.gg" },
-            { name: "Minecraft Backup 2", fake: true, alwaysOnline: true },
-            { name: "FiveM", fake: true, alwaysOnline: true }, 
-            { name: "Teamspeak", fake: true, alwaysOnline: true },
-        ];
+        const projectServers = {
+            "minecraft-network": [
+                { name: "Proxy", ip: "lilith.playit.gg" },
+                { name: "Lobby", ip: "lobby.lilith.playit.gg" },
+                { name: "Survival", ip: "survival.lilith.playit.gg" },
+                { name: "SMP", ip: "smp.lilith.playit.gg" },
+                { name: "Creative", ip: "creative.lilith.playit.gg" },
+                { name: "Backup", ip: "parkour.lilith.playit.gg" },
+                { name: "Backup 2", fake: true, alwaysOnline: true },
+            ],
+            "fivem": [
+                { name: "Main Server", fake: true, alwaysOnline: true },
+            ],
+            "minecraft-modded": [
+                { name: "Main Server", ip: "mod.lilith.playit.gg" },
+            ],
+            "teamspeak": [
+                { name: "Main Server", fake: true, alwaysOnline: true },
+            ]
+        };
 
-        function createStatusElement(name, online) {
+        function createStatusBadge(name, online) {
             const div = document.createElement('div');
-            div.className = `status-item ${online ? 'online' : 'offline'}`;
-            const icon = online ? '✅' : '❌';
-            div.innerHTML = `<span class="status-icon">${icon}</span> ${name}`;
+            div.className = `status-badge ${online ? 'online' : 'offline'}`;
+            div.innerHTML = `<span class="status-dot"></span>${name}`;
             return div;
         }
 
-        async function updateServerStatus() {
-            const container = document.getElementById('status-container');
-            container.innerHTML = ''; // Clear previous status
-            
-            for (const server of servers) {
-                let online = false;
+        async function updateAllStatuses() {
+            for (const [projectId, servers] of Object.entries(projectServers)) {
+                const container = document.querySelector(`.live-status[data-project="${projectId}"]`);
+                if (!container) continue;
+                container.innerHTML = '';
 
-                if (server.fake) {
-                    online = server.alwaysOnline;
-                } else {
-                    try {
-                        const response = await fetch(`https://api.mcstatus.io/v2/status/java/${server.ip}`);
-                        const data = await response.json();
-                        online = data.online;
-                    } catch (error) {
-                        console.error(`Failed to fetch status for ${server.name}:`, error);
-                        online = false;
+                for (const server of servers) {
+                    let online = false;
+
+                    if (server.fake) {
+                        online = server.alwaysOnline;
+                    } else {
+                        try {
+                            const response = await fetch(`https://api.mcstatus.io/v2/status/java/${server.ip}`);
+                            const data = await response.json();
+                            online = data.online;
+                        } catch (error) {
+                            console.error(`Failed to fetch status for ${server.name}:`, error);
+                        }
                     }
+
+                    const badge = createStatusBadge(server.name, online);
+                    container.appendChild(badge);
                 }
-                const statusElement = createStatusElement(server.name, online);
-                container.appendChild(statusElement);
             }
         }
-        
-        updateServerStatus();
-        setInterval(updateServerStatus, 10000); // Update every 10 seconds
+
+        updateAllStatuses();
+        setInterval(updateAllStatuses, 10000);
     </script>
 </body>
 </html>
