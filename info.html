@@ -8,17 +8,15 @@
     <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
     
     <style>
-        /* Global and Base Styles */
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
-            background: #111; /* Explicit Dark Background */
+            background: #111;
             color: #eee;
             line-height: 1.6;
             min-height: 100vh;
         }
 
-        /* Navigation Bar */
         .nav {
             background: #1b1b1b;
             padding: 12px 20px;
@@ -53,7 +51,6 @@
             border-color: #0ff;
         }
 
-        /* Main Heading */
         h1 {
             text-align: center;
             margin: 25px 0 25px; 
@@ -61,7 +58,6 @@
             color: #0ff;
         }
 
-        /* Info Section (Links & Servers) */
         .info-section {
             margin-top: 40px;
             text-align: center;
@@ -98,7 +94,6 @@
             margin: 4px 0;
         }
 
-        /* Social Cards Layout */
         .card-container {
             display: flex;
             flex-wrap: wrap;
@@ -117,10 +112,9 @@
         }
         .card:hover {
             transform: scale(1.02);
-            border-color: #0ff; /* Standard neon blue hover */
+            border-color: #0ff;
         }
         
-        /* Discord & Steam Card Styles */
         .discord-card { background: #1a1a1a; position: relative; }
         .discord-banner { height: 120px; background: #ff00ff; }
         .rc-bruden .discord-banner { background: #d7889b; }
@@ -182,93 +176,7 @@
         }
         .steam-info h3 { margin: 0; font-size: 20px; }
         .steam-info p { margin: 4px 0; font-size: 14px; }
-        
-        
-        /* === DEDICATED MUSIC & STATS CARD STYLES === */
-        .music-stats-card-container {
-            display: flex;
-            justify-content: center;
-            padding: 0 20px; 
-            margin: 30px auto 20px auto; /* Reduced bottom margin to 20px */
-            max-width: 1100px; 
-        }
 
-        .music-stats-card {
-            /* Now acting as a single panel for Stats.fm */
-            max-width: 400px; 
-            width: 100%;
-            background: #1a1a1a; 
-            padding: 20px; 
-            border-radius: 10px;
-            border: 1px solid #2a2a2a;
-            transition: transform .25s ease, border-color .25s ease;
-        }
-
-        .music-stats-card:hover {
-            transform: scale(1.01); 
-            border-color: #9d4edd; 
-            box-shadow: 0 0 15px rgba(157, 77, 221, 0.4); 
-        }
-
-        /* New Panel for Spotify Playlists */
-        .single-music-panel {
-            max-width: 700px; 
-            width: 100%;
-            margin: 20px auto 50px auto; /* 20px top margin to separate from Stats card */
-            background: #1a1a1a; 
-            padding: 20px; 
-            border-radius: 10px;
-            border: 1px solid #2a2a2a;
-            transition: transform .25s ease, border-color .25s ease;
-        }
-
-        .single-music-panel:hover {
-            transform: scale(1.01);
-            border-color: #1DB954;
-            box-shadow: 0 0 15px rgba(29, 185, 84, 0.4); 
-        }
-
-
-        .music-column {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .spotify-section-title {
-            font-size: 1.1rem; 
-            text-align: center;
-            color: #1DB954; 
-            border-bottom: 1px solid #2a2a2a;
-            padding-bottom: 8px;
-            margin: 0 0 5px 0;
-        }
-
-        .stats-fm-title {
-             color: #9d4edd;
-        }
-
-        /* Styling for the playist area within the single panel */
-        .single-music-panel .spotify-embed-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-        .spotify-embed-wrapper iframe {
-            display: block;
-            width: 100%;
-            height: 185px; 
-        }
-        
-        /* Stats.fm Embed Styling */
-        .stats-fm-iframe {
-            border-radius: 8px;
-            height: 400px; 
-        }
-        /* ========================================= */
-
-
-        /* Hardware & Peripherals Section Styles */
         .hardware-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -330,7 +238,6 @@
             margin-right: 5px;
         }
 
-        /* Peripheral Cards (using DL for key/value pairs) */
         .peripheral-card {
             padding: 20px;
         }
@@ -363,7 +270,56 @@
             color: #bbb;
         }
 
-        /* Responsive Adjustments */
+        /* === Sensitivity Section Styles === */
+        .sensitivity-card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 30px auto 50px auto;
+            padding: 0 20px;
+        }
+
+        .sensitivity-card {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all .3s ease;
+        }
+
+        .sensitivity-card:hover {
+            transform: translateY(-3px);
+            border-color: #0ff;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+        }
+
+        .sensitivity-title {
+            color: #ff00ff;
+            font-size: 1.2rem;
+            border-bottom: 2px solid #2a2a2a;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+
+        .sensitivity-card ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .sensitivity-card ul li {
+            margin-bottom: 10px;
+            color: #bbb;
+        }
+
+        .sensitivity-card ul li strong {
+            color: #eee;
+            min-width: 120px;
+            display: inline-block;
+        }
+
         @media (max-width: 768px) {
             .hardware-container {
                 grid-template-columns: 1fr;
@@ -376,28 +332,8 @@
             .peripheral-card dl {
                 grid-template-columns: 1fr 1.5fr;
             }
-            .discord-status, .discord-username, .discord-pronouns {
-                margin-left: 100px;
-            }
-            .discord-pfp {
-                width: 80px;
-                height: 80px;
-                top: -40px;
-                left: 15px;
-            }
-            .music-stats-card {
-                grid-template-columns: 1fr; 
-                max-width: 100%;
-            }
-            .single-music-panel .spotify-embed-wrapper {
-                 grid-template-columns: 1fr; /* Stack playlists on mobile */
-            }
-            .stats-fm-iframe {
-                height: 300px; 
-            }
         }
 
-        /* Fixed Buttons */
         .button-container {
             position: fixed;
             bottom: 20px;
@@ -424,17 +360,16 @@
 </head>
 <body style="background: #111;">
     <div class="nav">
-    <span class="brand-logo">NAKNEMO.XYZ - Lilith</span>
-    <div class="nav-links">
-        <a href="map.html">map</a>
-        <a href="index.html">Home</a> 
+        <span class="brand-logo">NAKNEMO.XYZ - Lilith</span>
+        <div class="nav-links">
+            <a href="map.html">map</a>
+            <a href="index.html">Home</a> 
+        </div>
     </div>
-</div>
 
     <h1>NAKNEMO!</h1>
 
     <div class="card-container">
-        
         <div class="card discord-card naknemo">
             <div class="discord-banner" style="background: #0ff;"></div>
             <div class="discord-content">
@@ -454,7 +389,6 @@
                 <div class="discord-pronouns">molly_lilithxd • She/her/kylskåpsmagnet</div>
             </div>
         </div>
-        
 
         <div class="card steam-card">
             <img class="steam-pfp" src="cb75d9d1aebd31be5ad76b2971f1f28290373ba1_full.jpg" alt="Steam Profile 1">
@@ -476,7 +410,6 @@
     </div>
 
     <div class="info-section">
-        
         <h2>Links</h2>
         <a href="#">📧 naknemo.suedi@gmail.com</a>
         <a href="https://steamcommunity.com/id/SUEDI_/" target="_blank">🎮 SUEDI</a>
@@ -501,7 +434,7 @@
                     <li><strong>CPU:</strong> Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz</li>
                     <li><strong>GPU:</strong> NVIDIA GeForce RTX 3050</li>
                     <li><strong>RAM:</strong> 16GB (2x8GB)</li>
-                    <li><strong>Storage:</strong> 500gb NVMe M.2 SSD + 4TB HDD</li>
+                    <li><strong>Storage:</strong> 500GB NVMe M.2 SSD + 4TB HDD</li>
                     <li><strong>OS:</strong> Windows 11 Pro</li>
                 </ul>
             </div>
@@ -548,44 +481,55 @@
                 <dl>
                     <dt>Main Monitor</dt><dd>T24m-10 (1080p @ 60Hz)</dd>
                     <dt>Second Monitor</dt><dd>Arzopa (1080p @ 60Hz)</dd>
-                    <dt>Third Monitor</dd><dd>S24C350 (1080p @ 60Hz)</dd>
+                    <dt>Third Monitor</dt><dd>Acer (1080p @ 60Hz)</dd>
+                    <dt>Chair</dt><dd>Random Ikea Chair</dd>
                 </dl>
             </div>
         </div>
-        
-        <h2>My Music & Stats</h2>
-        <div class="music-stats-card-container">
 
-        </div>
-        <div class="single-music-panel">
-             <h4 class="spotify-section-title">My Playlists</h4>
-             <div class="spotify-embed-wrapper">
-                 <iframe style="border-radius:12px" 
-                         src="https://open.spotify.com/embed/playlist/0aJ9Vi5eRQXxZpFQq8Ep3G?utm_source=generator&theme=0" 
-                         width="100%" 
-                         height="185" 
-                         frameBorder="0" 
-                         allowfullscreen="" 
-                         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                         loading="lazy">
-                 </iframe>
-                 
-                 <iframe style="border-radius:12px" 
-                         src="https://open.spotify.com/embed/playlist/43Rm6ydQxWLw7jV9tYXZdZ?utm_source=generator&theme=0" 
-                         width="100%" 
-                         height="185" 
-                         frameBorder="0" 
-                         allowfullscreen="" 
-                         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                         loading="lazy">
-                 </iframe>
-             </div>
-        </div>
-        </div>
+        <!-- New Game Sensitivity & Settings Section -->
+        <h2>🎮 Game Sensitivity & Settings</h2>
+        <div class="sensitivity-card-container">
+            <div class="sensitivity-card">
+                <div class="sensitivity-title">Counter-Strike 2 (CS2)</div>
+                <ul>
+                    <li><strong>DPI:</strong> 800</li>
+                    <li><strong>In-game Sensitivity:</strong> 2.8</li>
+                    <li><strong>eDPI:</strong> 2240</li>
+                    <li><strong>Resolution:</strong> 1920x1080 (16:9 widescreen)</li>
+                    <li><strong>Crosshair:</strong> CSGO-TbDEr-LjXV7-Adq8J-XDKdM-mOJvM</li>
+                    <li><strong>Viewmodel:</strong> 68 | -9 | -9 | -9</li>
+                    <li><strong>Config:</strong> Custom autoexec</li>
+                </ul>
+            </div>
 
-    <div class="button-container">
-        <a href="#" class="common-button">Scroll Up</a>
+            <div class="sensitivity-card">
+                <div class="sensitivity-title">----</div>
+                <ul>
+                    <li><strong>DPI:</strong> ----</li>
+                    <li><strong>In-game Sensitivity:</strong> ----</li>
+                    <li><strong>eDPI:</strong> ----</li>
+                    <li><strong>Crosshair:</strong> ----</li>
+                    <li><strong>Resolution:</strong> 1920x1080</li>
+                </ul>
+            </div>
+
+            <div class="sensitivity-card">
+                <div class="sensitivity-title">----</div>
+                <ul>
+                    <li><strong>DPI:</strong> ----</li>
+                    <li><strong>In-game Sensitivity:</strong> ----</li>
+                    <li><strong>eDPI:</strong> ----</li>
+                    <li><strong>Crosshair:</strong> ----</li>
+                    <li><strong>Resolution:</strong> 1920x1080</li>
+                </ul>
+            </div>
+        </div>
     </div>
 
+    <div class="button-container">
+        <a href="index.html" class="common-button">← Back</a>
+        <a href="#" class="common-button">↑ Top</a>
+    </div>
 </body>
 </html>
